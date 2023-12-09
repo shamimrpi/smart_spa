@@ -1,5 +1,18 @@
 <template>
   <div class="about">
+    <div class="container mt-5">
+      <div class="row">
+
+        <div class="col-md-11">
+          <input type="text" class="form-control" v-model="searchQuery" placeholder="Search by City Name ,State or County" />
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-sm btn-success" @click="searchCity">Search</button>
+        </div>
+      </div>
+   
+    <!-- ... your existing table code ... -->
+  </div>
     <h3 class="text-center my-3">City list page</h3>
     <div class="container">
       <div class="row justify-content-center" v-if="loading">
@@ -55,6 +68,7 @@ export default {
       totalPages: 10,
       loading: false,
       selectedCity: Object,
+      searchQuery: '',
     };
   },
 
@@ -63,8 +77,9 @@ export default {
       try {
         const response = await apiClient.get('/get-city-list', {
           params: {
-            page: newPage ?? this.currentPage,
-            per_page: this.perPage, // Ensure perPage is defined
+            page: newPage ?? this.currentPage, // current page
+            per_page: this.perPage, // per page 
+            search: this.searchQuery, // search data
           },
         });
         this.city_list = response.data.city_list.data;
@@ -86,6 +101,10 @@ export default {
       $('#cityModal').modal('show'); 
       
       
+    },
+    async searchCity() {
+      this.currentPage = 1; // Reset to the first page when performing a new search
+      await this.fetchAllCity();
     },
     closeModal() {
       // Close the modal using Vue data binding

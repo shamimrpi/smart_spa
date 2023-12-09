@@ -7,3 +7,6 @@
 .main_content{
   min-height: 80vh;
 }
+li{
+  cursor: pointer;
+}
