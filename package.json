@@ -16,19 +16,8 @@
     "pinia": "^2.1.7",
     "select2": "^4.1.0-rc.0",
     "vue": "^3.3.10",
-<<<<<<< HEAD
-    "vue-i18n": "^9.1.10",
-    "vue-router": "^4.2.5",
-    "vue-select": "^4.0.0-beta.6",
-    "vue-select2": "^0.2.6",
-    "vue-select2-component": "^1.0.1",
-    "vue3-select2-component": "^0.1.7",
-    "vuejs-uib-pagination": "^1.0.6",
-    "vuestic-ui": "^1.8.6"
-=======
     "vue-router": "^4.2.5",
     "vue-select": "^4.0.0-beta.6"
->>>>>>> 5b34abaf53c6a9e5f86e234d650a52e0cc64323d
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.1",
