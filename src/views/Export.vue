@@ -1,6 +1,6 @@
 <template>
     <div>
-      <button @click="exportTable(tableData, tableFields)">Export Table</button>
+      <button class="btn btn-sm btn-info mt-2" @click="exportTable(tableData, tableFields)">Export Table</button>
       <table>
         <thead>
           <tr>
