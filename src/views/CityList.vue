@@ -1,10 +1,35 @@
 <template>
   <div class="about">
     <div class="container mt-5">
+    
+      <div class="row mb-5">
+        <div class="col-md-5">
+          <!-- <v-select id="search" autocomplete="search" name="search" v-model="selectedValue" placeholder="Select an option" :options="options" @input="logging" /> -->
+          <va-select
+          :label="'searchableMulti'"
+          text-by="description"
+          placeholder="Select "
+          searchable
+          track-by="id"
+          @change="logging" 
+          :options="options"
+        />
+        <va-select
+                v-model="searchableMulti"
+                :label="'searchableMulti'"
+                searchable
+                text-by="description"
+                track-by="id"
+                @input="logging" 
+                :options="options"
+              />
+        </div>
+      </div>
+
       <div class="row">
 
         <div class="col-md-11">
-          <input type="text" class="form-control" v-model="searchQuery" placeholder="Search by City Name ,State or County" />
+          <input type="text" class="form-control"  v-model="searchQuery" placeholder="Search by City Name ,State or County" autocomplete="off" />
         </div>
         <div class="col-md-1">
           <button class="btn btn-sm btn-success" @click="searchCity">Search</button>
@@ -51,14 +76,19 @@
 </template>
 
 <script>
+  import { ref } from 'vue'
 import apiClient from '../axios';
 import Loading from '../components/Loading.vue';
 import CityModal from '../views/CityModal.vue'; // Assuming the correct path and component name
-
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
+const multiSearchableSelectModel = ref({})
+// const options = ref(this.options)
 export default {
   components: {
     Loading,
     CityModal,
+    vSelect,
   },
   data() {
     return {
@@ -67,8 +97,24 @@ export default {
       totalItems: 15,
       totalPages: 10,
       loading: false,
-      selectedCity: Object,
+      selectedCity: {},
       searchQuery: '',
+      selectedValue:null,
+      searchableMulti:'',
+      options:ref([
+        {
+          id: 1,
+          description: 'First option',
+        },
+        {
+          id: 2,
+          description: 'Second option',
+        },
+        {
+          id: 3,
+          description: 'Third option',
+        },
+      ])
     };
   },
 
@@ -82,6 +128,7 @@ export default {
             search: this.searchQuery, // search data
           },
         });
+        
         this.city_list = response.data.city_list.data;
         this.totalItems = response.data.city_list.total;
         this.currentPage = response.data.city_list.current_page;
@@ -109,7 +156,16 @@ export default {
     closeModal() {
       // Close the modal using Vue data binding
       $('#cityModal').modal('hide');
-    }
+    },
+  
+    logging() {
+      // Handle the change event here
+     alert('ok');
+    },
+    onSelect(event) {
+      console.log(event);
+    },
+    
   },
 
   mounted() {
