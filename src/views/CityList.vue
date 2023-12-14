@@ -4,13 +4,13 @@
       <div class="row">
 
         <div class="col-md-11">
-          <input type="text" class="form-control" v-model="searchQuery" placeholder="Search by City Name ,State or County" />
+          <input  type="text" id="search" class="form-control" v-model="searchQuery" placeholder="Search by City Name ,State or County" />
         </div>
         <div class="col-md-1">
           <button class="btn btn-sm btn-success" @click="searchCity">Search</button>
         </div>
       </div>
-   
+    <v-select @update:modelValue="handleSelectInput" id="username" placeholder="select" v-model="selectedOption"  :options="cityOptions" ></v-select>
     <!-- ... your existing table code ... -->
   </div>
     <h3 class="text-center my-3">City list page</h3>
@@ -67,8 +67,15 @@ export default {
       totalItems: 15,
       totalPages: 10,
       loading: false,
-      selectedCity: Object,
+      selectedCity: {},
       searchQuery: '',
+       selectedOption: null,
+       cityOptions: [],
+      options: [
+        { label: 'Option 1', value: 'option1' },
+        { label: 'Option 2', value: 'option2' },
+        // Add more options as needed
+      ],
     };
   },
 
@@ -82,6 +89,11 @@ export default {
             search: this.searchQuery, // search data
           },
         });
+        // console.log(response.data.city_list.data.json());
+        this.cityOptions = response.data.city_list.data.map(city => ({
+          label: city.city, // Adjust the property based on your data
+          value: city.id,   // Adjust the property based on your data
+        }));
         this.city_list = response.data.city_list.data;
         this.totalItems = response.data.city_list.total;
         this.currentPage = response.data.city_list.current_page;
@@ -109,7 +121,12 @@ export default {
     closeModal() {
       // Close the modal using Vue data binding
       $('#cityModal').modal('hide');
-    }
+    },
+    handleSelectInput(value) {
+      // Handle the input event
+      console.log('Selected option:', value.value);
+      // You can do additional logic here if needed
+    },
   },
 
   mounted() {
