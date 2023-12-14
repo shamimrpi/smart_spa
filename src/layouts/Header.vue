@@ -14,6 +14,9 @@
                             <li class="nav-item">
                                 <router-link to="/city-list" class="nav-link" :class="{ 'active': $route.name === 'CityList' }">City List</router-link>
                             </li>
+                             <li class="nav-item">
+                                <router-link to="/table" class="nav-link" :class="{ 'active': $route.name === 'table' }">Table</router-link>
+                            </li>
                         </ul>
                     </div>
                 </div>
