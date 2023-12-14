@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div>
+      
       <form @submit.prevent="addProducts">
         <table class="table table-responsive">
           <tr class="bg-primary">

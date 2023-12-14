@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from './components/Pagination.vue';
 import globalMixin from './stores/global';
 import { createApp } from 'vue'
-import Pagination from './components/Pagination.vue';
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
@@ -16,7 +15,6 @@ app.component('v-select', vSelect)
 app.component('pagination', Pagination);
 
 app.use(createPinia())
-app.use(createVuestic())
 app.use(router)
 
 app.mount('#app')
