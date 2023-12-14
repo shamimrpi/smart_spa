@@ -29,13 +29,17 @@
       <div class="row">
 
         <div class="col-md-11">
+<<<<<<< HEAD
           <input type="text" class="form-control"  v-model="searchQuery" placeholder="Search by City Name ,State or County" autocomplete="off" />
+=======
+          <input  type="text" id="search" class="form-control" v-model="searchQuery" placeholder="Search by City Name ,State or County" />
+>>>>>>> 5b34abaf53c6a9e5f86e234d650a52e0cc64323d
         </div>
         <div class="col-md-1">
           <button class="btn btn-sm btn-success" @click="searchCity">Search</button>
         </div>
       </div>
-   
+    <v-select @update:modelValue="handleSelectInput" id="username" placeholder="select" v-model="selectedOption"  :options="cityOptions" ></v-select>
     <!-- ... your existing table code ... -->
   </div>
     <h3 class="text-center my-3">City list page</h3>
@@ -99,6 +103,7 @@ export default {
       loading: false,
       selectedCity: {},
       searchQuery: '',
+<<<<<<< HEAD
       selectedValue:null,
       searchableMulti:'',
       options:ref([
@@ -115,6 +120,15 @@ export default {
           description: 'Third option',
         },
       ])
+=======
+       selectedOption: null,
+       cityOptions: [],
+      options: [
+        { label: 'Option 1', value: 'option1' },
+        { label: 'Option 2', value: 'option2' },
+        // Add more options as needed
+      ],
+>>>>>>> 5b34abaf53c6a9e5f86e234d650a52e0cc64323d
     };
   },
 
@@ -128,7 +142,15 @@ export default {
             search: this.searchQuery, // search data
           },
         });
+<<<<<<< HEAD
         
+=======
+        // console.log(response.data.city_list.data.json());
+        this.cityOptions = response.data.city_list.data.map(city => ({
+          label: city.city, // Adjust the property based on your data
+          value: city.id,   // Adjust the property based on your data
+        }));
+>>>>>>> 5b34abaf53c6a9e5f86e234d650a52e0cc64323d
         this.city_list = response.data.city_list.data;
         this.totalItems = response.data.city_list.total;
         this.currentPage = response.data.city_list.current_page;
@@ -157,6 +179,7 @@ export default {
       // Close the modal using Vue data binding
       $('#cityModal').modal('hide');
     },
+<<<<<<< HEAD
   
     logging() {
       // Handle the change event here
@@ -166,6 +189,13 @@ export default {
       console.log(event);
     },
     
+=======
+    handleSelectInput(value) {
+      // Handle the input event
+      console.log('Selected option:', value.value);
+      // You can do additional logic here if needed
+    },
+>>>>>>> 5b34abaf53c6a9e5f86e234d650a52e0cc64323d
   },
 
   mounted() {

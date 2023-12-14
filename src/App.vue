@@ -5,7 +5,8 @@ import Footer from './layouts/Footer.vue'
 </script>
 
 <template>
-  <div>
+ 
+    <div >
     <Header></Header>
       <div class="main_content">
           <RouterView />
@@ -16,6 +17,12 @@ import Footer from './layouts/Footer.vue'
   </div>
  
 </template>
+
+<script>
+export default {
+   
+};
+</script>
 
 <style scoped>
 

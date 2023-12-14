@@ -12,3 +12,15 @@
 li{
   cursor: pointer;
 }
+
+.day-mode {
+  /* Day mode styles */
+  background-color: #fff;
+  color: #000;
+}
+
+.night-mode {
+  /* Night mode styles */
+  background-color: #1a1a1a;
+  color: #fff;
+}
